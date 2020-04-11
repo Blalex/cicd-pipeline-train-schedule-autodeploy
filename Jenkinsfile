@@ -74,10 +74,8 @@ pipeline {
             when {
                 branch 'master'
             }
-     
             steps {
                 milestone(1)
-               
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
                     configs: 'train-schedule-kube.yml',
@@ -89,10 +87,10 @@ pipeline {
     post {
         cleanup{
              kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    enableConfigSubstitution: true
-                )
+                kubeconfigId: 'kubeconfig',
+                configs: 'train-schedule-kube-canary.yml',
+                enableConfigSubstitution: true
+            )
         }
     }
 }
